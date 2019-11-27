@@ -36,7 +36,6 @@ contract SeguroFianca {
         fiancaPaga = true;
         statusPagamentoAluguel = true;
     }
-    
     function mudaStatusPagamento(string memory _descricao) public {
         require(msg.sender == imobiliaria, "Somente imobiliaria pode alterar o status do contrato");
         if (keccak256(abi.encodePacked(_descricao)) == keccak256("atrasado")) {
@@ -45,7 +44,6 @@ contract SeguroFianca {
             enderecoLocador.transfer(address(this).balance);
         }
     }
-    
     function fimDoContrato() public {
         require(msg.sender == imobiliaria, "Somente imobiliaria pode alterar o status do contrato");
         if (fiancaPaga == true && statusPagamentoAluguel == true) {
